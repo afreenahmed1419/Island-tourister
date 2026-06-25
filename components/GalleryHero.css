@@ -1,0 +1,63 @@
+.gh-section {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+  background-color: #264d52;
+}
+
+/* Tilted stage, oversized so the rotation never reveals edges */
+.gh-stage {
+  position: absolute;
+  inset: -28%;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1rem;
+  transform: rotate(-15deg) scale(1.05);
+  transform-origin: center center;
+  z-index: 1;
+}
+
+.gh-row {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  will-change: transform;
+}
+
+.gh-row--left {
+  animation: gh-marquee-left 45s linear infinite;
+}
+
+.gh-row--right {
+  animation: gh-marquee-right 38s linear infinite;
+}
+
+.gh-tile {
+  width: 22vw;
+  min-width: 220px;
+  height: 100%;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-color: #1d3b3f;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Each row holds 3 copies of its image set → shift by one third for a seamless loop */
+@keyframes gh-marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+
+@keyframes gh-marquee-right {
+  from { transform: translateX(-33.333%); }
+  to   { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gh-row--left,
+  .gh-row--right {
+    animation: none;
+  }
+}

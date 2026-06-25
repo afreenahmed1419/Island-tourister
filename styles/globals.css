@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand palette ("Waves") — mirrored as CSS variables for non-Tailwind use */
+:root {
+  --color-sage: #70ac90;
+  --color-shoreline: #c59f82;
+  --color-shadow: #264d52;
+  --color-ocean: #496a49;
+  --color-sand: #d8c0aa;
+  --color-cream: #f7f4ec;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-shadow font-sans antialiased;
+}
+
+/* Respect reduced-motion globally: neutralise smooth scroll + heavy animation */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Premium refined image placeholder — soft gradient + subtle grain, brand-tinted */
+.ph-surface {
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(112, 172, 144, 0.16), transparent 55%),
+    radial-gradient(120% 120% at 100% 100%, rgba(197, 159, 130, 0.22), transparent 55%),
+    linear-gradient(160deg, #efe6d8, #e3d3c0);
+  position: relative;
+  overflow: hidden;
+}
+.ph-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(38, 77, 82, 0.06) 1px, transparent 1px);
+  background-size: 4px 4px;
+  opacity: 0.5;
+}
+
+/* Elegant section eyebrow / label */
+.eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widearrow text-ocean;
+}
+
+/* Labeled image placeholder surface (sand/sage tinted, dashed) */
+.placeholder-box {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(112, 172, 144, 0.045),
+      rgba(112, 172, 144, 0.045) 14px,
+      rgba(216, 192, 170, 0.07) 14px,
+      rgba(216, 192, 170, 0.07) 28px
+    ),
+    linear-gradient(160deg, rgba(216, 192, 170, 0.35), rgba(112, 172, 144, 0.18));
+  border: 1px dashed rgba(38, 77, 82, 0.25);
+}
+
+/* Custom focus ring matching brand */
+.focus-brand:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 2px;
+}

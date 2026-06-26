@@ -140,7 +140,7 @@ export default function ContactPage() {
               Airport and the ferry harbour.
             </p>
           </Reveal>
-          <div className="mt-10 aspect-[21/9] overflow-hidden rounded-2xl shadow-soft ring-1 ring-shadow/10">
+          <div className="mt-10 aspect-[4/3] overflow-hidden rounded-2xl shadow-soft ring-1 ring-shadow/10 sm:aspect-[21/9]">
             <iframe
               title="Islands Tourister location"
               src="https://maps.google.com/maps?q=11.6726877,92.723769&z=15&hl=en&output=embed"

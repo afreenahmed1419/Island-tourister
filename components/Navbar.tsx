@@ -5,9 +5,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-import { AnimatePresence, motion } from 'framer-motion'
 import { navLinks } from '@/lib/data'
 import Button from './Button'
+import MobileMenu from './MobileMenu'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -135,33 +135,8 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile full-screen menu */}
-      <AnimatePresence>
-        {open && (
-          <motion.nav
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
-            className="fixed inset-0 top-[72px] z-40 flex flex-col gap-1 bg-cream px-6 py-8 lg:hidden"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`border-b border-sand/50 py-4 font-serif text-2xl text-shadow transition-colors hover:text-sage ${
-                  isActive(link.href) ? 'text-sage' : ''
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Button href="/contact" size="lg" className="mt-6 w-full">
-              Book Now
-            </Button>
-          </motion.nav>
-        )}
-      </AnimatePresence>
+      {/* Kinetic mobile menu */}
+      <MobileMenu open={open} onClose={() => setOpen(false)} isActive={isActive} />
     </header>
   )
 }

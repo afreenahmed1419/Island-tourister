@@ -45,12 +45,15 @@ export default function AmenitiesShowcase() {
           className="grid grid-cols-2 overflow-hidden rounded-2xl shadow-soft ring-1 ring-shadow/10 sm:grid-cols-4"
         >
           {amenities.map((a, i) => {
-            const darkTile = (Math.floor(i / 4) + (i % 4)) % 2 === 1
+            const darkAt2 = (Math.floor(i / 2) + (i % 2)) % 2 === 1
+            const darkAt4 = (Math.floor(i / 4) + (i % 4)) % 2 === 1
             return (
               <div
                 key={a.label}
                 className={`group flex aspect-square flex-col items-center justify-center gap-3 px-3 text-center transition-colors duration-300 ${
-                  darkTile ? 'bg-[#ECE3D4] hover:bg-[#E3D7C2]' : 'bg-cream hover:bg-[#F1ECE1]'
+                  darkAt2 ? 'bg-[#ECE3D4] hover:bg-[#E3D7C2]' : 'bg-cream hover:bg-[#F1ECE1]'
+                } ${
+                  darkAt4 ? 'sm:bg-[#ECE3D4] sm:hover:bg-[#E3D7C2]' : 'sm:bg-cream sm:hover:bg-[#F1ECE1]'
                 }`}
               >
                 <Icon

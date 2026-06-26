@@ -241,10 +241,10 @@ export type DiningExperience = {
 
 export const diningExperiences: DiningExperience[] = [
   {
-    title: 'Candlelight Beach Dinner',
+    title: 'Candlelight Dinner',
     kicker: 'An evening for two',
     tagline: 'An intimate evening under the Andaman stars.',
-    desc: 'Let the sound of gentle waves set the mood as you and your loved one sit down to a private, candlelit dinner on the shore. Our chef prepares a bespoke multi-course menu — fresh island seafood, flame-grilled delicacies and artisan desserts — while soft music and the glow of a hundred candles turn an ordinary evening into a memory that lasts forever.',
+    desc: 'Step onto our rooftop terrace as the night sky unfolds above you and your loved one. Our chef prepares a bespoke multi-course menu — fresh island seafood, flame-grilled delicacies and artisan desserts — while soft music and the glow of a hundred candles turn an ordinary evening into a memory that lasts forever.',
     highlights: [
       { label: 'Private Beachside Setup', icon: 'Palmtree' },
       { label: 'Multi-Course Gourmet Menu', icon: 'UtensilsCrossed' },
@@ -256,7 +256,7 @@ export const diningExperiences: DiningExperience[] = [
     timing: '7:00 PM – 10:30 PM · By reservation',
     price: 'from ₹4,500 / couple',
     image: '/dining/candlelight-dinner.jpg',
-    imageLabel: 'Candlelight Beach Dinner'
+    imageLabel: 'Candlelight Dinner'
   },
   {
     title: 'Family Buffet Night',

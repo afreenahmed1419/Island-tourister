@@ -36,7 +36,18 @@ export default function RoomsShowcase() {
               <span className="mx-auto mt-3 block h-px w-12 bg-shoreline" />
 
               <div className="mt-7 grid items-center gap-8 md:grid-cols-[1.3fr_1fr] md:gap-10">
-                {/* Left: description + amenities + CTA */}
+                {/* Image — shown first on mobile (order-first), second on desktop (md:order-last) */}
+                <div className="group relative order-first aspect-[4/3] overflow-hidden rounded-2xl shadow-soft md:order-last">
+                  <Image
+                    src={room.image}
+                    alt={room.imageLabel}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                </div>
+
+                {/* Description + amenities + CTA */}
                 <div>
                   <p className="text-center leading-relaxed text-shadow/75 md:text-left">
                     {room.description}
@@ -66,16 +77,6 @@ export default function RoomsShowcase() {
                   </div>
                 </div>
 
-                {/* Right: image */}
-                <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl shadow-soft">
-                  <Image
-                    src={room.image}
-                    alt={room.imageLabel}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                </div>
               </div>
               </div>
             </BorderGlow>

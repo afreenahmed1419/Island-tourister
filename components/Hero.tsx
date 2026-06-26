@@ -44,13 +44,24 @@ export default function Hero() {
     <section ref={ref} className="relative h-screen min-h-[640px] overflow-hidden bg-black">
       {/* Parallax background image + its vignette (scaled together) */}
       <motion.div style={{ y }} className="absolute inset-0">
+        {/* Mobile — portrait hero photo, fills the screen */}
         <Image
-          src="/hero/hero-night.png"
+          src="/hero/hero-mobile.jpg"
           alt="Islands Tourister hotel entrance lit up at night"
           fill
           priority
           sizes="100vw"
-          className="object-contain brightness-110"
+          className="object-cover md:hidden"
+        />
+        {/* Desktop — wide exterior */}
+        <Image
+          src="/hero/hero-night.png"
+          alt=""
+          aria-hidden
+          fill
+          priority
+          sizes="100vw"
+          className="hidden object-contain brightness-110 md:block"
         />
       </motion.div>
 
@@ -69,15 +80,18 @@ export default function Hero() {
       {/* Soft bottom gradient — just enough to separate cards from the image */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#050b0d]/60 to-transparent" />
 
+      {/* Mobile-only scrim — darkens the top, where the heading now sits. */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/65 via-black/15 to-black/30 md:hidden" />
+
       {/* ── Hero heading ──────────────────────────────────────────────────── */}
-      <div className="absolute inset-0 flex items-center pt-24 md:pt-32">
-        <div className="w-full max-w-2xl px-6 pb-20 md:pb-28 md:pl-28 md:pr-12">
+      <div className="absolute inset-0 flex items-start pt-28 md:items-center md:pt-32">
+        <div className="w-full max-w-2xl px-6 text-center md:pb-28 md:pl-28 md:pr-12 md:text-left">
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.4 }}
             transition={{ duration: 0.9 }}
-            className="font-script text-6xl leading-[0.9] text-cream md:text-8xl"
+            className="font-script text-6xl leading-[0.9] text-cream [text-shadow:0_2px_24px_rgba(0,0,0,0.7)] md:text-8xl md:[text-shadow:none]"
           >
             Luxury redefined
           </motion.h1>
@@ -86,7 +100,7 @@ export default function Hero() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.4 }}
             transition={{ duration: 0.9, delay: 0.25 }}
-            className="mt-5 max-w-sm text-xs leading-relaxed text-cream/75 md:text-sm"
+            className="mx-auto mt-5 max-w-sm text-xs leading-relaxed text-cream/85 [text-shadow:0_1px_12px_rgba(0,0,0,0.85)] md:mx-0 md:text-sm md:text-cream/75 md:[text-shadow:none]"
           >
             A serene island escape where comfort meets charm — moments from the airport.
           </motion.p>

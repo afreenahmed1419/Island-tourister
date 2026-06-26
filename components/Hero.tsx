@@ -81,17 +81,18 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#050b0d]/60 to-transparent" />
 
       {/* Mobile-only scrim — darkens the top, where the heading now sits. */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/65 via-black/15 to-black/30 md:hidden" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/65 via-black/10 to-black/60 md:hidden" />
 
       {/* ── Hero heading ──────────────────────────────────────────────────── */}
-      <div className="absolute inset-0 flex items-start pt-28 md:items-center md:pt-32">
-        <div className="w-full max-w-2xl px-6 text-center md:pb-28 md:pl-28 md:pr-12 md:text-left">
+      {/* Desktop — left-aligned, vertically centred */}
+      <div className="absolute inset-0 hidden md:flex md:items-center md:pt-32">
+        <div className="w-full max-w-2xl pb-28 pl-28 pr-12 text-left">
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.4 }}
             transition={{ duration: 0.9 }}
-            className="font-script text-6xl leading-[0.9] text-cream [text-shadow:0_2px_24px_rgba(0,0,0,0.7)] md:text-8xl md:[text-shadow:none]"
+            className="font-script text-8xl leading-[0.9] text-cream"
           >
             Luxury redefined
           </motion.h1>
@@ -100,7 +101,7 @@ export default function Hero() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.4 }}
             transition={{ duration: 0.9, delay: 0.25 }}
-            className="mx-auto mt-5 max-w-sm text-xs leading-relaxed text-cream/85 [text-shadow:0_1px_12px_rgba(0,0,0,0.85)] md:mx-0 md:text-sm md:text-cream/75 md:[text-shadow:none]"
+            className="mt-5 max-w-sm text-sm leading-relaxed text-cream/75"
           >
             A serene island escape where comfort meets charm — moments from the airport.
           </motion.p>
@@ -125,8 +126,58 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Mobile — heading at top, subtext + CTA pinned to bottom */}
+      <div className="absolute inset-0 flex flex-col md:hidden">
+        {/* Top: heading */}
+        <div className="px-6 pt-28 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.4 }}
+            transition={{ duration: 0.9 }}
+            className="font-script text-6xl leading-[0.9] text-cream [text-shadow:0_2px_24px_rgba(0,0,0,0.7)]"
+          >
+            Luxury redefined
+          </motion.h1>
+        </div>
+
+        {/* Spacer */}
+        <div className="flex-1" />
+
+        {/* Bottom: subtext + CTA */}
+        <div className="px-6 pb-[72px] text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.4 }}
+            transition={{ duration: 0.9, delay: 0.25 }}
+            className="mx-auto max-w-xs text-[13px] leading-relaxed text-cream/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.85)]"
+          >
+            A serene island escape where comfort meets charm — moments from the airport.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.4 }}
+            transition={{ duration: 0.9, delay: 0.4 }}
+            className="mt-5"
+          >
+            <Button href="/rooms" size="md" variant="dark">
+              Explore
+              <motion.span
+                animate={{ y: [0, 4, 0] }}
+                transition={{ repeat: Infinity, duration: 1.4, ease: 'easeInOut' }}
+                className="inline-flex"
+              >
+                <ArrowDown className="h-4 w-4" />
+              </motion.span>
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+
       {/* ── Highlights marquee (continuous auto-scroll) ────────────────────── */}
-      <div className="group absolute inset-x-0 bottom-0 hidden overflow-hidden bg-[#5a4233]/35 py-4 backdrop-blur-md md:block">
+      <div className="group absolute inset-x-0 bottom-0 overflow-hidden bg-[#5a4233]/35 py-3 backdrop-blur-md md:py-4">
         <motion.div
           className="flex w-max items-center"
           animate={{ x: ['0%', '-50%'] }}
@@ -135,14 +186,14 @@ export default function Hero() {
           {[...features, ...features].map((f, i) => (
             <div
               key={i}
-              className="flex shrink-0 items-center gap-3.5 border-l border-white/15 px-8 lg:px-12"
+              className="flex shrink-0 items-center gap-2.5 border-l border-white/15 px-5 md:gap-3.5 md:px-8 lg:px-12"
             >
-              <f.icon className="h-6 w-6 shrink-0 text-white/90" strokeWidth={1.3} />
+              <f.icon className="h-5 w-5 shrink-0 text-white/90 md:h-6 md:w-6" strokeWidth={1.3} />
               <div className="whitespace-nowrap">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white md:text-[11px] md:tracking-[0.16em]">
                   {f.title}
                 </p>
-                <p className="mt-1 text-[11px] leading-relaxed text-white/65">{f.desc}</p>
+                <p className="mt-0.5 hidden text-[11px] leading-relaxed text-white/65 md:block">{f.desc}</p>
               </div>
             </div>
           ))}

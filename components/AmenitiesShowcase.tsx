@@ -17,12 +17,12 @@ export default function AmenitiesShowcase() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-white/50" />
+        <div className="absolute inset-0 bg-black/15" />
         <div className="absolute inset-0 flex items-center justify-center px-4 text-center">
           <Reveal
             as="h2"
             blur
-            className="font-script text-[3.5rem] leading-none text-shadow [text-shadow:0_1px_16px_rgba(247,244,236,0.85)] md:text-7xl lg:text-8xl"
+            className="rounded-2xl border border-white/20 bg-white/25 px-8 py-5 font-script text-[3.5rem] leading-none text-shadow backdrop-blur-sm md:px-14 md:py-7 md:text-7xl lg:text-8xl"
           >
             Comfort in Every Detail
           </Reveal>

@@ -22,7 +22,7 @@ export default function AmenitiesShowcase() {
           <Reveal
             as="h2"
             blur
-            className="rounded-2xl border border-white/20 bg-white/25 px-8 py-5 font-script text-[3.5rem] leading-none text-shadow backdrop-blur-sm md:px-14 md:py-7 md:text-7xl lg:text-8xl"
+            className="rounded-2xl border border-white/30 bg-white/55 px-8 py-5 font-script text-[3.5rem] leading-none text-shadow backdrop-blur-sm md:px-14 md:py-7 md:text-7xl lg:text-8xl"
           >
             Comfort in Every Detail
           </Reveal>

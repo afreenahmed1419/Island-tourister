@@ -65,23 +65,20 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Left fade into black — anchors the heading text */}
+      {/* Left fade into black — desktop only */}
       <div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 hidden md:block"
         style={{
           background:
             'linear-gradient(to right, rgba(6,10,12,0.92) 0%, rgba(6,10,12,0.7) 24%, rgba(6,10,12,0.3) 48%, transparent 70%)'
         }}
       />
 
-      {/* Premium dark blend behind the navbar — top fades into the image */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-[#070f11] via-[#070f11]/55 to-transparent" />
+      {/* Top blend behind the navbar — lighter on mobile */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/50 to-transparent md:h-56 md:from-[#070f11] md:via-[#070f11]/55" />
 
-      {/* Soft bottom gradient — just enough to separate cards from the image */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#050b0d]/60 to-transparent" />
-
-      {/* Mobile-only scrim — darkens the top, where the heading now sits. */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/65 via-black/10 to-black/60 md:hidden" />
+      {/* Bottom gradient — lighter on mobile for marquee readability */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/50 to-transparent md:h-52 md:from-[#050b0d]/60" />
 
       {/* ── Hero heading ──────────────────────────────────────────────────── */}
       {/* Desktop — left-aligned, vertically centred */}

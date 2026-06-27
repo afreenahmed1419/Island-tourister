@@ -117,15 +117,15 @@ export default function AboutPage() {
             as="div"
             stagger={0.06}
             once={false}
-            className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3"
+            className="mt-14 grid grid-cols-3 gap-3 sm:grid-cols-3 sm:gap-4"
           >
             {facilities.map((f) => (
               <RevealItem key={f.label} blur>
-                <div className="group flex h-full items-center gap-4 rounded-2xl border border-shadow/10 bg-white/60 p-5 shadow-soft transition-colors duration-300 hover:border-sage/50 hover:bg-white">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage/12 text-ocean transition-colors duration-300 group-hover:bg-sage group-hover:text-cream">
+                <div className="group flex h-full flex-col items-center gap-2.5 rounded-2xl border border-shadow/10 bg-white/60 px-3 py-5 text-center shadow-soft transition-colors duration-300 hover:border-sage/50 hover:bg-white sm:flex-row sm:gap-4 sm:px-5 sm:py-5 sm:text-left">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sage/12 text-ocean transition-colors duration-300 group-hover:bg-sage group-hover:text-cream sm:h-12 sm:w-12">
                     <Icon name={f.icon} className="h-5 w-5" strokeWidth={1.5} />
                   </span>
-                  <span className="font-medium leading-tight text-shadow">{f.label}</span>
+                  <span className="text-[13px] font-medium leading-tight text-shadow sm:text-base">{f.label}</span>
                 </div>
               </RevealItem>
             ))}

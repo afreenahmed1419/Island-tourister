@@ -440,7 +440,7 @@ export const values: Value[] = [
 // ── Contact details (placeholders) ──────────────────────────────────────────────
 export const contactDetails = {
   address: 'Premnagar, Port Blair (Sri Vijaya Puram), Andaman & Nicobar Islands 744101',
-  phone: '+91 00000 00000',
+  phone: '+91 70639 90194',
   email: 'islandstourister@gmail.com',
   hours: 'Reception open 24 / 7'
 }

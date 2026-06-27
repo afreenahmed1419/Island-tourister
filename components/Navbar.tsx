@@ -68,6 +68,7 @@ export default function Navbar() {
   }
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         solid ? 'bg-cream/95 shadow-soft backdrop-blur' : 'bg-transparent'
@@ -135,8 +136,10 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Kinetic mobile menu */}
-      <MobileMenu open={open} onClose={() => setOpen(false)} isActive={isActive} />
     </header>
+
+    {/* Kinetic mobile menu — must be outside header to avoid backdrop-blur containing block */}
+    <MobileMenu open={open} onClose={() => setOpen(false)} isActive={isActive} />
+  </>
   )
 }

@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
-import { navLinks } from '@/lib/data'
+import { Menu, X, Phone } from 'lucide-react'
+import { navLinks, telHref } from '@/lib/data'
 import Button from './Button'
 import MobileMenu from './MobileMenu'
 
@@ -116,11 +116,12 @@ export default function Navbar() {
         {/* Col 3 — CTA: extreme right */}
         <div className="hidden shrink-0 items-center justify-end lg:flex">
           <Button
-            href="/contact"
+            href={telHref}
             size="md"
             variant={solid ? 'primary' : 'outline-light'}
           >
-            Book Now
+            <Phone className="h-3.5 w-3.5" />
+            Call to Book
           </Button>
         </div>
 

@@ -1,7 +1,7 @@
 import '../styles/welcome-pattern.css'
 import React from 'react'
 import type { Metadata } from 'next'
-import { ArrowRight, MapPin } from 'lucide-react'
+import { ArrowRight, MapPin, Phone } from 'lucide-react'
 import Hero from '@/components/Hero'
 import AnimatedSection from '@/components/AnimatedSection'
 import Button from '@/components/Button'
@@ -13,6 +13,7 @@ import TestimonialsGallery from '@/components/TestimonialsGallery'
 import { Reveal } from '@/components/motion/Reveal'
 import DiningSection from '@/components/DiningSection'
 import SilkBackground from '@/components/SilkBackground'
+import { telHref } from '@/lib/data'
 
 export const metadata: Metadata = {
   title: 'Islands Tourister — Luxury Redefined in the Andamans',
@@ -106,9 +107,9 @@ export default function HomePage() {
             Your slice of the Andamans is waiting — reserve your stay and let the island do the rest.
           </Reveal>
           <Reveal from="up" delay={0.24} className="pointer-events-auto mt-9">
-            <Button href="/contact" size="lg" className="group">
-              Book Your Stay
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            <Button href={telHref} size="lg" className="group">
+              <Phone className="h-4 w-4" />
+              Call to Book Your Stay
             </Button>
           </Reveal>
         </div>

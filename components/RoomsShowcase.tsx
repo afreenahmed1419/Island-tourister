@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
+import { Phone } from 'lucide-react'
 import Icon from './Icon'
 import SectionHeading from './SectionHeading'
 import { Reveal } from './motion/Reveal'
 import BorderGlow from './ui/BorderGlow'
-import { rooms } from '@/lib/data'
+import { rooms, telHref } from '@/lib/data'
 
 export default function RoomsShowcase() {
   return (
@@ -69,10 +70,11 @@ export default function RoomsShowcase() {
                       {room.priceFrom.replace('from ', '')}
                     </span>
                     <a
-                      href="/contact"
-                      className="focus-brand inline-flex rounded-lg bg-shadow px-7 py-3 text-xs font-medium uppercase tracking-[0.16em] text-cream transition-colors duration-300 hover:bg-ocean"
+                      href={telHref}
+                      className="focus-brand inline-flex items-center gap-2 rounded-lg bg-shadow px-7 py-3 text-xs font-medium uppercase tracking-[0.16em] text-cream transition-colors duration-300 hover:bg-ocean"
                     >
-                      Book Now
+                      <Phone className="h-3.5 w-3.5" />
+                      Call to Book
                     </a>
                   </div>
                 </div>

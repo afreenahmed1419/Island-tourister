@@ -1,11 +1,12 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { ArrowRight, MapPin, Plane, Ship } from 'lucide-react'
+import { MapPin, Phone, Plane, Ship } from 'lucide-react'
 import Button from '@/components/Button'
 import Icon from '@/components/Icon'
 import AboutStats from '@/components/AboutStats'
 import { Reveal, RevealGroup, RevealItem } from '@/components/motion/Reveal'
+import { telHref } from '@/lib/data'
 import type { IconName } from '@/lib/icons'
 
 export const metadata: Metadata = {
@@ -209,9 +210,9 @@ export default function AboutPage() {
             Your island holiday begins the moment you arrive. Reserve your room and let us take
             care of the rest.
           </p>
-          <Button href="/contact" variant="shadow" size="lg" className="group mt-8">
-            Book Your Stay
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          <Button href={telHref} variant="shadow" size="lg" className="group mt-8">
+            <Phone className="h-4 w-4" />
+            Call to Book Your Stay
           </Button>
         </Reveal>
       </section>

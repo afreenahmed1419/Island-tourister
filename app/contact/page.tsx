@@ -10,7 +10,7 @@ import { contactDetails } from '@/lib/data'
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Get in touch with Islands Tourister — book your stay, ask a question, or plan your Andaman holiday. We reply within 24 hours.'
+    'Get in touch with Islands Tourister — call us to book your stay, or send a message for any other question about your Andaman holiday.'
 }
 
 const details = [
@@ -47,7 +47,7 @@ export default function ContactPage() {
               Contact Us
             </Reveal>
             <Reveal as="p" from="up" delay={0.16} once={false} className="mx-auto mt-5 max-w-md leading-relaxed text-cream/95 [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]">
-              We&apos;d love to help plan your island stay — reach out and we&apos;ll reply within 24 hours.
+              Call us to book your stay, or send a message for anything else — we&apos;d love to help.
             </Reveal>
           </div>
         </div>
@@ -58,11 +58,27 @@ export default function ContactPage() {
         <div className="mx-auto grid max-w-content gap-12 px-4 md:px-8 lg:grid-cols-5 lg:gap-16">
           {/* Form */}
           <Reveal as="div" from="up" blur once={false} className="lg:col-span-3">
-            <span className="eyebrow">Booking Enquiry</span>
-            <h2 className="mt-3 font-serif text-3xl text-shadow md:text-4xl">Plan Your Stay</h2>
+            {/* Bookings are phone-only */}
+            <div className="rounded-2xl border border-sage/30 bg-sage/10 p-6 md:p-7">
+              <span className="eyebrow">Booking a Room or Table?</span>
+              <h2 className="mt-2 font-serif text-2xl text-shadow md:text-3xl">
+                We Take Bookings by Phone
+              </h2>
+              <p className="mt-3 leading-relaxed text-shadow/70">
+                To check availability and confirm your rate instantly, please call our front desk
+                directly — our team is on hand 24/7.
+              </p>
+              <Button href={`tel:${contactDetails.phone}`} variant="shadow" className="group mt-5">
+                <Phone className="h-4 w-4" />
+                {contactDetails.phone}
+              </Button>
+            </div>
+
+            <span className="eyebrow mt-10 block">General Enquiry</span>
+            <h2 className="mt-3 font-serif text-3xl text-shadow md:text-4xl">Send Us a Message</h2>
             <p className="mt-3 leading-relaxed text-shadow/70">
-              Share your dates and preferences, and our team will get back to you with availability
-              and the best rates.
+              Have a question, feedback or a special request? Send us a message and we&apos;ll
+              reply by email.
             </p>
             <div className="mt-8 rounded-2xl bg-white p-6 shadow-soft ring-1 ring-shadow/10 md:p-8">
               <EnquiryForm />

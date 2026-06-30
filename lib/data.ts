@@ -445,5 +445,8 @@ export const contactDetails = {
   hours: 'Reception open 24 / 7'
 }
 
+// Bookings are phone-only — every "Book Now" / "Reserve" CTA dials this number.
+export const telHref = `tel:${contactDetails.phone.replace(/\s/g, '')}`
+
 // Room type options for the enquiry form dropdown
 export const roomTypeOptions = rooms.map((r) => r.name)

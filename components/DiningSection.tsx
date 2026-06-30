@@ -2,8 +2,9 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { Phone } from 'lucide-react'
 import { Reveal } from './motion/Reveal'
-import { diningExperiences } from '@/lib/data'
+import { diningExperiences, telHref } from '@/lib/data'
 
 export default function DiningSection() {
   return (
@@ -86,10 +87,11 @@ export default function DiningSection() {
                   </p>
 
                   <a
-                    href="/contact"
-                    className="focus-brand mt-8 inline-block border border-shadow/70 px-9 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-shadow transition-colors duration-300 hover:bg-shadow hover:text-cream"
+                    href={telHref}
+                    className="focus-brand mt-8 inline-flex items-center gap-2 border border-shadow/70 px-9 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-shadow transition-colors duration-300 hover:bg-shadow hover:text-cream"
                   >
-                    Reserve a Table
+                    <Phone className="h-3.5 w-3.5" />
+                    Call to Reserve
                   </a>
                 </Reveal>
               </div>

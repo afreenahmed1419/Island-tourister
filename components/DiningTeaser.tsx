@@ -106,10 +106,13 @@ export default function DiningTeaser() {
           <p className="text-sm text-shadow/60">
             Breakfast, soups, tandoor, biryanis, breads, salads and more — explore the complete à la carte menu.
           </p>
-          <Button href="/dining" variant="shadow" size="lg" className="group">
-            Explore Complete Dining Experience
+          <Link
+            href="/dining"
+            className="group inline-flex items-center gap-2 font-medium text-ocean underline-offset-4 hover:underline"
+          >
+            Explore the complete dining experience
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Button>
+          </Link>
         </Reveal>
       </div>
     </section>

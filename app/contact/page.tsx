@@ -36,7 +36,10 @@ export default function ContactPage() {
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative flex h-[58vh] min-h-[420px] items-center justify-center overflow-hidden">
-        <Image src="/gallery/hero/2.jpg" alt="Islands Tourister reception" fill priority sizes="100vw" className="object-cover" />
+        {/* Mobile */}
+        <Image src="/gallery/hero/2.jpg" alt="Islands Tourister reception" fill priority sizes="100vw" className="object-cover md:hidden" />
+        {/* Desktop */}
+        <Image src="/gallery/hero/reception.jpg" alt="Islands Tourister reception lobby" fill priority sizes="100vw" className="hidden object-cover md:block" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-black/35" />
         <div className="relative z-10 flex items-center justify-center px-4">
           <div className="flex max-w-xl flex-col items-center rounded-3xl border border-white/25 bg-white/10 px-8 py-10 text-center shadow-2xl backdrop-blur-2xl md:px-14 md:py-12">

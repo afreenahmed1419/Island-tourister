@@ -18,39 +18,41 @@ export default function DiningPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative flex h-[65vh] min-h-[480px] items-center justify-center overflow-hidden">
+      <section className="relative flex h-screen min-h-[600px] items-center justify-center overflow-hidden">
         <Image
-          src="/dining/dining-banner.jpg"
+          src="/dining/dining-restaurant.jpg"
           alt="Dining at Islands Tourister"
           fill
           priority
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/35" />
+        <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 flex flex-col items-center px-4 text-center">
-          <Reveal as="span" from="up" once={false} className="font-script text-4xl text-[#B7E0C9] [text-shadow:0_1px_12px_rgba(0,0,0,0.6)] md:text-5xl">
-            Savour the Island
-          </Reveal>
-          <Reveal
-            as="h1"
-            from="up"
-            blur
-            delay={0.08}
-            once={false}
-            className="mt-2 font-serif text-5xl text-cream [text-shadow:0_2px_22px_rgba(0,0,0,0.55)] md:text-6xl lg:text-7xl"
-          >
-            Dining at Islands Tourister
-          </Reveal>
-          <Reveal
-            as="p"
-            from="up"
-            delay={0.16}
-            once={false}
-            className="mx-auto mt-5 max-w-lg leading-relaxed text-cream/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]"
-          >
-            Fresh flavours, warm hospitality and a full menu — from morning chai to a candlelit dinner.
-          </Reveal>
+          <div className="flex flex-col items-center rounded-3xl border border-white/25 bg-white/15 px-8 py-10 shadow-2xl backdrop-blur-md md:px-16 md:py-14">
+            <Reveal as="span" from="up" once={false} className="font-script text-4xl text-[#B7E0C9] [text-shadow:0_1px_12px_rgba(0,0,0,0.6)] md:text-5xl">
+              Savour the Island
+            </Reveal>
+            <Reveal
+              as="h1"
+              from="up"
+              blur
+              delay={0.08}
+              once={false}
+              className="mt-2 font-serif text-5xl text-cream [text-shadow:0_2px_22px_rgba(0,0,0,0.55)] md:text-6xl lg:text-7xl"
+            >
+              Dining at Islands Tourister
+            </Reveal>
+            <Reveal
+              as="p"
+              from="up"
+              delay={0.16}
+              once={false}
+              className="mx-auto mt-5 max-w-lg leading-relaxed text-cream/95 [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]"
+            >
+              Fresh flavours, warm hospitality and a full menu — from morning chai to a candlelit dinner.
+            </Reveal>
+          </div>
         </div>
       </section>
 

@@ -102,17 +102,14 @@ export default function DiningTeaser() {
         </div>
 
         {/* CTA to full dining page */}
-        <Reveal as="div" from="up" blur once={false} className="mt-12 flex flex-col items-center gap-3 text-center">
+        <Reveal as="div" from="up" blur once={false} className="mt-12 flex flex-col items-center gap-4 text-center">
           <p className="text-sm text-shadow/60">
-            Breakfast, soups, tandoor, biryanis, breads, salads and more — see the complete menu
+            Breakfast, soups, tandoor, biryanis, breads, salads and more — explore the complete à la carte menu.
           </p>
-          <Link
-            href="/dining"
-            className="group inline-flex items-center gap-2 font-medium text-ocean underline-offset-4 hover:underline"
-          >
-            Explore the full dining page
+          <Button href="/dining" variant="shadow" size="lg" className="group">
+            Explore Complete Dining Experience
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+          </Button>
         </Reveal>
       </div>
     </section>

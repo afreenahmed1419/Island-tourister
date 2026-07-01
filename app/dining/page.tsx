@@ -1,6 +1,204 @@
-import { redirect } from 'next/navigation'
+import React from 'react'
+import type { Metadata } from 'next'
+import Image from 'next/image'
+import { Phone, Clock, UtensilsCrossed, Info } from 'lucide-react'
+import { Reveal } from '@/components/motion/Reveal'
+import Button from '@/components/Button'
+import DiningMenu from '@/components/DiningMenu'
+import { diningExperiences, telHref, contactDetails } from '@/lib/data'
+import { restaurantTimings } from '@/lib/menuData'
 
-// The Dining content now lives as a section on the home page.
+export const metadata: Metadata = {
+  title: 'Dining',
+  description:
+    'Savour fresh island flavours at Islands Tourister — a full à la carte menu spanning Indian, Chinese, Tandoor and seafood, served across breakfast, lunch and dinner.'
+}
+
 export default function DiningPage() {
-  redirect('/#dining')
+  return (
+    <>
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
+      <section className="relative flex h-[65vh] min-h-[480px] items-center justify-center overflow-hidden">
+        <Image
+          src="/dining/dining-banner.jpg"
+          alt="Dining at Islands Tourister"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/35" />
+        <div className="relative z-10 flex flex-col items-center px-4 text-center">
+          <Reveal as="span" from="up" once={false} className="font-script text-4xl text-[#B7E0C9] [text-shadow:0_1px_12px_rgba(0,0,0,0.6)] md:text-5xl">
+            Savour the Island
+          </Reveal>
+          <Reveal
+            as="h1"
+            from="up"
+            blur
+            delay={0.08}
+            once={false}
+            className="mt-2 font-serif text-5xl text-cream [text-shadow:0_2px_22px_rgba(0,0,0,0.55)] md:text-6xl lg:text-7xl"
+          >
+            Dining at Islands Tourister
+          </Reveal>
+          <Reveal
+            as="p"
+            from="up"
+            delay={0.16}
+            once={false}
+            className="mx-auto mt-5 max-w-lg leading-relaxed text-cream/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]"
+          >
+            Fresh flavours, warm hospitality and a full menu — from morning chai to a candlelit dinner.
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── Info bar — timings + call to reserve ─────────────────────────── */}
+      <section className="bg-shadow">
+        <div className="mx-auto flex max-w-content flex-col items-center justify-between gap-6 px-6 py-8 md:flex-row md:gap-10 md:px-12 md:py-7">
+          {/* Timings */}
+          <div className="flex flex-wrap justify-center gap-6 md:justify-start md:gap-10">
+            <div className="flex items-center gap-2.5 text-cream/80">
+              <UtensilsCrossed className="h-4 w-4 shrink-0 text-sage" strokeWidth={1.5} />
+              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-sage">Restaurant</span>
+              <span className="text-xs text-cream/60">· 1st Floor</span>
+            </div>
+            {restaurantTimings.map((t) => (
+              <div key={t.label} className="flex items-center gap-2">
+                <Clock className="h-4 w-4 shrink-0 text-sage/70" strokeWidth={1.5} />
+                <span className="text-xs text-cream/70">
+                  <span className="font-medium text-cream">{t.label}</span>
+                  <span className="ml-2">{t.time}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="shrink-0">
+            <Button href={telHref} variant="outline-light" size="sm">
+              <Phone className="h-3.5 w-3.5" />
+              Call to Reserve
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Info strip — room service note ───────────────────────────────── */}
+      <div className="border-b border-shadow/10 bg-sand/30 py-3">
+        <div className="mx-auto flex max-w-content items-center justify-center gap-2.5 px-4">
+          <Info className="h-4 w-4 shrink-0 text-ocean/70" strokeWidth={1.5} />
+          <p className="text-center text-xs leading-relaxed text-shadow/65">
+            Room service available — dial <strong className="text-shadow">9</strong> from your room.
+            &nbsp;Pre-order available for lunch &amp; dinner. Preparation time: up to 30 minutes.
+            &nbsp;Breakfast buffet at <strong className="text-shadow">₹150/pax</strong>.
+          </p>
+        </div>
+      </div>
+
+      {/* ── Signature dining experiences ─────────────────────────────────── */}
+      <section className="bg-cream pt-24 md:pt-32">
+        <div className="mx-auto max-w-content px-4 md:px-8">
+          <Reveal as="div" from="up" blur once={false} className="text-center">
+            <span className="eyebrow justify-center">Signature Experiences</span>
+            <h2 className="mt-3 font-serif text-3xl text-shadow md:text-4xl">Special Dining Events</h2>
+            <p className="mx-auto mt-4 max-w-xl leading-relaxed text-shadow/70">
+              Beyond the menu — memorable dining moments curated just for you.
+            </p>
+          </Reveal>
+
+          <div className="mt-16 flex flex-col gap-20 md:gap-28">
+            {diningExperiences.map((exp, i) => {
+              const textLeft = i % 2 === 0
+              return (
+                <div
+                  key={exp.title}
+                  className="grid items-center gap-10 md:grid-cols-2 md:gap-16 lg:gap-20"
+                >
+                  {/* Image */}
+                  <Reveal
+                    as="div"
+                    from={textLeft ? 'right' : 'left'}
+                    blur
+                    once={false}
+                    duration={1}
+                    className={textLeft ? 'md:order-2' : 'md:order-1'}
+                  >
+                    <div className="group relative aspect-[4/3] overflow-hidden rounded-lg shadow-soft ring-1 ring-shadow/10">
+                      <Image
+                        src={exp.image}
+                        alt={exp.imageLabel}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-[1.6s] ease-out group-hover:scale-[1.05]"
+                      />
+                    </div>
+                  </Reveal>
+
+                  {/* Text */}
+                  <Reveal
+                    as="div"
+                    from={textLeft ? 'left' : 'right'}
+                    blur
+                    once={false}
+                    duration={1}
+                    delay={0.1}
+                    className={`px-2 text-center md:px-8 ${textLeft ? 'md:order-1' : 'md:order-2'}`}
+                  >
+                    <p className="font-script text-[1.75rem] leading-none text-shoreline md:text-3xl">
+                      {exp.kicker}
+                    </p>
+                    <h3 className="mt-3 font-serif text-[2rem] leading-tight text-shadow md:text-[2.5rem]">
+                      {exp.title}
+                    </h3>
+                    <p className="mx-auto mt-5 max-w-md text-[15px] leading-[1.85] text-shadow/70">
+                      {exp.desc}
+                    </p>
+                    <a
+                      href={telHref}
+                      className="focus-brand mt-8 inline-flex items-center gap-2 border border-shadow/70 px-9 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-shadow transition-colors duration-300 hover:bg-shadow hover:text-cream"
+                    >
+                      <Phone className="h-3.5 w-3.5" />
+                      Call to Reserve
+                    </a>
+                  </Reveal>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Full menu ────────────────────────────────────────────────────── */}
+      <section className="mt-24 border-t border-shadow/10 bg-cream md:mt-32">
+        <div className="mx-auto max-w-content px-4 pb-6 pt-16 text-center md:px-8 md:pt-20">
+          <Reveal as="span" from="up" once={false} className="eyebrow justify-center">
+            À La Carte
+          </Reveal>
+          <Reveal as="h2" from="up" blur delay={0.06} once={false} className="mt-3 font-serif text-3xl text-shadow md:text-4xl">
+            Our Full Menu
+          </Reveal>
+          <Reveal as="p" from="up" delay={0.12} once={false} className="mx-auto mt-4 max-w-xl leading-relaxed text-shadow/65">
+            Browse our complete menu — Indian, Chinese, Tandoor, fresh seafood, breads, rice and more.
+          </Reveal>
+        </div>
+
+        <DiningMenu />
+
+        {/* Bottom CTA */}
+        <div className="border-t border-shadow/10 bg-sand/30 py-12 text-center">
+          <p className="font-serif text-xl text-shadow md:text-2xl">
+            Ready to dine? Call ahead and we&apos;ll have your table ready.
+          </p>
+          <div className="mt-6">
+            <Button href={telHref} variant="shadow" size="lg">
+              <Phone className="h-4 w-4" />
+              {contactDetails.phone}
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  )
 }

@@ -11,8 +11,8 @@ import AmenitiesShowcase from '@/components/AmenitiesShowcase'
 import RoomsShowcase from '@/components/RoomsShowcase'
 import TestimonialsGallery from '@/components/TestimonialsGallery'
 import { Reveal } from '@/components/motion/Reveal'
-import DiningSection from '@/components/DiningSection'
 import SilkBackground from '@/components/SilkBackground'
+import DiningTeaser from '@/components/DiningTeaser'
 import { telHref } from '@/lib/data'
 
 export const metadata: Metadata = {
@@ -37,8 +37,8 @@ export default function HomePage() {
       {/* ── Why stay with us / Amenities ────────────────────────────────── */}
       <AmenitiesShowcase />
 
-      {/* ── Dining ──────────────────────────────────────────────────────── */}
-      <DiningSection />
+      {/* ── Dining teaser + menu highlights ─────────────────────────────── */}
+      <DiningTeaser />
 
       {/* ── Guest reviews (circular gallery) ────────────────────────────── */}
       <TestimonialsGallery />

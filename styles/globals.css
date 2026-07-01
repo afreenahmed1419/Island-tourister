@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
 /* Brand palette ("Waves") — mirrored as CSS variables for non-Tailwind use */
 :root {
   --color-sage: #70ac90;

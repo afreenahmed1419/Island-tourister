@@ -13,7 +13,7 @@ export const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Rooms & Suites', href: '/#rooms' },
-  { label: 'Dining', href: '/#dining' },
+  { label: 'Dining', href: '/dining' },
   { label: 'Experiences', href: '/#experiences' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Contact', href: '/contact' }

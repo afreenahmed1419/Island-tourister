@@ -58,26 +58,29 @@ export default function DiningPage() {
 
       {/* ── Info bar — timings + call to reserve ─────────────────────────── */}
       <section className="bg-shadow">
-        <div className="mx-auto flex max-w-content flex-col items-center justify-between gap-6 px-6 py-8 md:flex-row md:gap-10 md:px-12 md:py-7">
-          {/* Timings */}
-          <div className="flex flex-wrap justify-center gap-6 md:justify-start md:gap-10">
-            <div className="flex items-center gap-2.5 text-cream/80">
+        <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-6 py-5 md:px-12">
+          {/* Left: restaurant label + timings in one non-wrapping row */}
+          <div className="flex min-w-0 items-center gap-5 overflow-x-auto md:gap-8">
+            <div className="flex shrink-0 items-center gap-2">
               <UtensilsCrossed className="h-4 w-4 shrink-0 text-sage" strokeWidth={1.5} />
-              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-sage">Restaurant</span>
-              <span className="text-xs text-cream/60">· 1st Floor</span>
+              <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-[0.14em] text-sage">
+                Restaurant · 1st Floor
+              </span>
             </div>
-            {restaurantTimings.map((t) => (
-              <div key={t.label} className="flex items-center gap-2">
-                <Clock className="h-4 w-4 shrink-0 text-sage/70" strokeWidth={1.5} />
-                <span className="text-xs text-cream/70">
-                  <span className="font-medium text-cream">{t.label}</span>
-                  <span className="ml-2">{t.time}</span>
+            <div className="h-4 w-px shrink-0 bg-cream/15" />
+            {restaurantTimings.map((t, i) => (
+              <div key={t.label} className="flex shrink-0 items-center gap-1.5">
+                {i > 0 && <span className="mr-1 text-cream/20">·</span>}
+                <Clock className="h-3.5 w-3.5 shrink-0 text-sage/60" strokeWidth={1.5} />
+                <span className="whitespace-nowrap text-xs text-cream/60">
+                  <span className="font-semibold text-cream/90">{t.label}</span>
+                  {' '}{t.time}
                 </span>
               </div>
             ))}
           </div>
 
-          {/* CTA */}
+          {/* Right: CTA */}
           <div className="shrink-0">
             <Button href={telHref} variant="outline-light" size="sm">
               <Phone className="h-3.5 w-3.5" />

@@ -17,33 +17,56 @@ export default function DiningMenu() {
     <div>
       {/* ── Tab bar ─────────────────────────────────────────────────── */}
       <div className="sticky top-[68px] z-30 bg-shadow shadow-md">
-        <div className="relative">
-          <div className="no-scrollbar flex overflow-x-auto px-3 py-2.5 md:justify-center md:px-8 md:py-3">
-            {menuTabs.map((tab) => {
-              const active = tab.id === activeTab
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`relative shrink-0 rounded-full px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] transition-all duration-200 md:px-5 md:py-2 md:text-xs ${
-                    active ? 'bg-cream text-shadow' : 'text-cream/55 hover:bg-white/10 hover:text-cream'
-                  }`}
-                >
-                  {active && (
-                    <motion.span
-                      layoutId="tab-pill"
-                      className="absolute inset-0 rounded-full bg-cream"
-                      transition={{ type: 'spring', stiffness: 400, damping: 35 }}
-                      style={{ zIndex: -1 }}
-                    />
-                  )}
-                  {tab.label}
-                </button>
-              )
-            })}
-          </div>
-          {/* Right fade — indicates more tabs on mobile */}
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-shadow to-transparent md:hidden" />
+        {/* Mobile: wrap to 2 rows so all 9 tabs are visible */}
+        <div className="flex flex-wrap justify-center gap-1.5 px-3 py-3 md:hidden">
+          {menuTabs.map((tab) => {
+            const active = tab.id === activeTab
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] transition-all duration-200 ${
+                  active ? 'bg-cream text-shadow' : 'text-cream/55 hover:bg-white/10 hover:text-cream'
+                }`}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="tab-pill-mobile"
+                    className="absolute inset-0 rounded-full bg-cream"
+                    transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+                    style={{ zIndex: -1 }}
+                  />
+                )}
+                {tab.label}
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Desktop: single scrollable row, centred */}
+        <div className="no-scrollbar hidden overflow-x-auto md:flex md:justify-center md:px-8 md:py-3">
+          {menuTabs.map((tab) => {
+            const active = tab.id === activeTab
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative shrink-0 rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-[0.1em] transition-all duration-200 ${
+                  active ? 'bg-cream text-shadow' : 'text-cream/55 hover:bg-white/10 hover:text-cream'
+                }`}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="tab-pill-desktop"
+                    className="absolute inset-0 rounded-full bg-cream"
+                    transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+                    style={{ zIndex: -1 }}
+                  />
+                )}
+                {tab.label}
+              </button>
+            )
+          })}
         </div>
       </div>
 

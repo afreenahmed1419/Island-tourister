@@ -7,6 +7,11 @@
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* Brand palette ("Waves") — mirrored as CSS variables for non-Tailwind use */
 :root {
   --color-sage: #70ac90;

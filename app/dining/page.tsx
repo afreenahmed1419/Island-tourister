@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { Phone, Clock, UtensilsCrossed } from 'lucide-react'
+import { Phone, Clock, UtensilsCrossed, Dot } from 'lucide-react'
 import { Reveal } from '@/components/motion/Reveal'
 import Button from '@/components/Button'
 import DiningMenu from '@/components/DiningMenu'
@@ -55,7 +55,7 @@ export default function DiningPage() {
               Fresh flavours, warm hospitality and a full menu — from morning chai to a candlelit dinner.
             </Reveal>
             <Reveal from="up" delay={0.24} once={false} className="mt-6 md:mt-8">
-              <Button href={telHref} variant="dark" size="md">
+              <Button href={telHref} variant="primary" size="md">
                 <Phone className="h-3.5 w-3.5" />
                 Call to Reserve
               </Button>
@@ -63,22 +63,41 @@ export default function DiningPage() {
           </div>
         </div>
 
-        {/* Bottom: timings strip inside hero */}
-        <div className="relative z-10 border-t border-white/15 bg-black/35 backdrop-blur-sm">
-          <div className="mx-auto flex max-w-content flex-wrap items-center justify-center gap-x-6 gap-y-2 px-6 py-3 md:justify-start md:gap-x-8 md:px-12 md:py-4">
-            <div className="flex items-center gap-2">
-              <UtensilsCrossed className="h-3.5 w-3.5 shrink-0 text-sage" strokeWidth={1.5} />
-              <span className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.14em] text-sage md:text-xs">
-                Restaurant · 1st Floor
-              </span>
-            </div>
-            <div className="hidden h-3 w-px bg-white/20 md:block" />
-            {restaurantTimings.map((t) => (
-              <div key={t.label} className="flex items-center gap-1.5">
-                <Clock className="h-3 w-3 shrink-0 text-cream/50 md:h-3.5 md:w-3.5" strokeWidth={1.5} />
-                <span className="whitespace-nowrap text-[10px] text-cream/60 md:text-xs">
-                  <span className="font-semibold text-cream/85">{t.label}</span>{' '}{t.time}
-                </span>
+        {/* Bottom: continuous marquee timings strip */}
+        <div className="relative z-10 overflow-hidden border-t border-white/20 bg-black/50 py-3 backdrop-blur-sm">
+          {/* Fade edges */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-black/50 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-black/50 to-transparent" />
+
+          <div
+            className="flex w-max animate-marquee items-center gap-0"
+            style={{ animation: 'marquee 28s linear infinite' }}
+          >
+            {[...Array(2)].map((_, rep) => (
+              <div key={rep} className="flex items-center">
+                {/* Restaurant label */}
+                <div className="flex shrink-0 items-center gap-2 px-8">
+                  <UtensilsCrossed className="h-3.5 w-3.5 text-sage" strokeWidth={1.5} />
+                  <span className="whitespace-nowrap text-[11px] font-bold uppercase tracking-[0.18em] text-sage">
+                    Restaurant · 1st Floor
+                  </span>
+                </div>
+                <Dot className="h-4 w-4 shrink-0 text-white/25" />
+                {/* Timings */}
+                {restaurantTimings.map((t, i) => (
+                  <div key={t.label} className="flex shrink-0 items-center">
+                    <div className="flex items-center gap-2 px-8">
+                      <Clock className="h-3.5 w-3.5 text-cream/60" strokeWidth={1.5} />
+                      <span className="whitespace-nowrap text-[11px] text-cream/80">
+                        <span className="font-semibold text-cream">{t.label}</span>{' '}{t.time}
+                      </span>
+                    </div>
+                    {i < restaurantTimings.length - 1 && (
+                      <Dot className="h-4 w-4 shrink-0 text-white/25" />
+                    )}
+                  </div>
+                ))}
+                <Dot className="h-4 w-4 shrink-0 text-white/25" />
               </div>
             ))}
           </div>

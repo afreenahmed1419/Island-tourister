@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { Phone, Clock, UtensilsCrossed, Info } from 'lucide-react'
+import { Phone, Clock, UtensilsCrossed } from 'lucide-react'
 import { Reveal } from '@/components/motion/Reveal'
 import Button from '@/components/Button'
 import DiningMenu from '@/components/DiningMenu'
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 export default function DiningPage() {
   return (
     <>
-      {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative flex h-screen min-h-[600px] items-center justify-center overflow-hidden">
+      {/* ── Hero — full viewport with info strip baked in ─────────────────── */}
+      <section className="relative flex h-screen min-h-[600px] flex-col overflow-hidden">
         <Image
           src="/dining/dining-restaurant.jpg"
           alt="Dining at Islands Tourister"
@@ -27,10 +27,12 @@ export default function DiningPage() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 flex flex-col items-center px-4 text-center">
-          <div className="flex flex-col items-center rounded-3xl border border-white/25 bg-white/15 px-8 py-10 shadow-2xl backdrop-blur-md md:px-16 md:py-14">
-            <Reveal as="span" from="up" once={false} className="font-script text-4xl text-[#B7E0C9] [text-shadow:0_1px_12px_rgba(0,0,0,0.6)] md:text-5xl">
+        <div className="absolute inset-0 bg-black/45" />
+
+        {/* Centre: frosted heading panel */}
+        <div className="relative z-10 flex flex-1 items-center justify-center px-4 py-8 text-center">
+          <div className="flex flex-col items-center rounded-2xl border border-white/25 bg-white/15 px-6 py-8 shadow-2xl backdrop-blur-md sm:rounded-3xl md:px-16 md:py-14">
+            <Reveal as="span" from="up" once={false} className="font-script text-3xl text-[#B7E0C9] [text-shadow:0_1px_12px_rgba(0,0,0,0.6)] md:text-5xl">
               Savour the Island
             </Reveal>
             <Reveal
@@ -39,7 +41,7 @@ export default function DiningPage() {
               blur
               delay={0.08}
               once={false}
-              className="mt-2 font-serif text-5xl text-cream [text-shadow:0_2px_22px_rgba(0,0,0,0.55)] md:text-6xl lg:text-7xl"
+              className="mt-2 font-serif text-4xl leading-tight text-cream [text-shadow:0_2px_22px_rgba(0,0,0,0.55)] md:text-6xl lg:text-7xl"
             >
               Dining at Islands Tourister
             </Reveal>
@@ -48,62 +50,43 @@ export default function DiningPage() {
               from="up"
               delay={0.16}
               once={false}
-              className="mx-auto mt-5 max-w-lg leading-relaxed text-cream/95 [text-shadow:0_1px_12px_rgba(0,0,0,0.5)]"
+              className="mx-auto mt-4 max-w-xs text-sm leading-relaxed text-cream/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.5)] md:max-w-lg md:text-base"
             >
               Fresh flavours, warm hospitality and a full menu — from morning chai to a candlelit dinner.
             </Reveal>
+            <Reveal from="up" delay={0.24} once={false} className="mt-6 md:mt-8">
+              <Button href={telHref} variant="dark" size="md">
+                <Phone className="h-3.5 w-3.5" />
+                Call to Reserve
+              </Button>
+            </Reveal>
           </div>
         </div>
-      </section>
 
-      {/* ── Info bar — timings + call to reserve ─────────────────────────── */}
-      <section className="bg-shadow">
-        <div className="mx-auto flex max-w-content items-center justify-between gap-6 px-6 py-5 md:px-12">
-          {/* Left: restaurant label + timings in one non-wrapping row */}
-          <div className="flex min-w-0 items-center gap-5 overflow-x-auto md:gap-8">
-            <div className="flex shrink-0 items-center gap-2">
-              <UtensilsCrossed className="h-4 w-4 shrink-0 text-sage" strokeWidth={1.5} />
-              <span className="whitespace-nowrap text-xs font-semibold uppercase tracking-[0.14em] text-sage">
+        {/* Bottom: timings strip inside hero */}
+        <div className="relative z-10 border-t border-white/15 bg-black/35 backdrop-blur-sm">
+          <div className="mx-auto flex max-w-content flex-wrap items-center justify-center gap-x-6 gap-y-2 px-6 py-3 md:justify-start md:gap-x-8 md:px-12 md:py-4">
+            <div className="flex items-center gap-2">
+              <UtensilsCrossed className="h-3.5 w-3.5 shrink-0 text-sage" strokeWidth={1.5} />
+              <span className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.14em] text-sage md:text-xs">
                 Restaurant · 1st Floor
               </span>
             </div>
-            <div className="h-4 w-px shrink-0 bg-cream/15" />
-            {restaurantTimings.map((t, i) => (
-              <div key={t.label} className="flex shrink-0 items-center gap-1.5">
-                {i > 0 && <span className="mr-1 text-cream/20">·</span>}
-                <Clock className="h-3.5 w-3.5 shrink-0 text-sage/60" strokeWidth={1.5} />
-                <span className="whitespace-nowrap text-xs text-cream/60">
-                  <span className="font-semibold text-cream/90">{t.label}</span>
-                  {' '}{t.time}
+            <div className="hidden h-3 w-px bg-white/20 md:block" />
+            {restaurantTimings.map((t) => (
+              <div key={t.label} className="flex items-center gap-1.5">
+                <Clock className="h-3 w-3 shrink-0 text-cream/50 md:h-3.5 md:w-3.5" strokeWidth={1.5} />
+                <span className="whitespace-nowrap text-[10px] text-cream/60 md:text-xs">
+                  <span className="font-semibold text-cream/85">{t.label}</span>{' '}{t.time}
                 </span>
               </div>
             ))}
           </div>
-
-          {/* Right: CTA */}
-          <div className="shrink-0">
-            <Button href={telHref} variant="outline-light" size="sm">
-              <Phone className="h-3.5 w-3.5" />
-              Call to Reserve
-            </Button>
-          </div>
         </div>
       </section>
 
-      {/* ── Info strip — room service note ───────────────────────────────── */}
-      <div className="border-b border-shadow/10 bg-sand/30 py-3">
-        <div className="mx-auto flex max-w-content items-center justify-center gap-2.5 px-4">
-          <Info className="h-4 w-4 shrink-0 text-ocean/70" strokeWidth={1.5} />
-          <p className="text-center text-xs leading-relaxed text-shadow/65">
-            Room service available — dial <strong className="text-shadow">9</strong> from your room.
-            &nbsp;Pre-order available for lunch &amp; dinner. Preparation time: up to 30 minutes.
-            &nbsp;Breakfast buffet at <strong className="text-shadow">₹150/pax</strong>.
-          </p>
-        </div>
-      </div>
-
       {/* ── Signature dining experiences ─────────────────────────────────── */}
-      <section className="bg-cream pt-24 md:pt-32">
+      <section className="bg-cream pt-16 md:pt-24">
         <div className="mx-auto max-w-content px-4 md:px-8">
           <Reveal as="div" from="up" blur once={false} className="text-center">
             <span className="eyebrow justify-center">Signature Experiences</span>
@@ -113,24 +96,24 @@ export default function DiningPage() {
             </p>
           </Reveal>
 
-          <div className="mt-16 flex flex-col gap-20 md:gap-28">
+          <div className="mt-12 flex flex-col gap-16 md:mt-16 md:gap-24">
             {diningExperiences.map((exp, i) => {
               const textLeft = i % 2 === 0
               return (
                 <div
                   key={exp.title}
-                  className="grid items-center gap-10 md:grid-cols-2 md:gap-16 lg:gap-20"
+                  className="grid items-center gap-8 md:grid-cols-2 md:gap-16 lg:gap-20"
                 >
-                  {/* Image */}
+                  {/* Image — always on top on mobile */}
                   <Reveal
                     as="div"
                     from={textLeft ? 'right' : 'left'}
                     blur
                     once={false}
                     duration={1}
-                    className={textLeft ? 'md:order-2' : 'md:order-1'}
+                    className={`order-first ${textLeft ? 'md:order-2' : 'md:order-1'}`}
                   >
-                    <div className="group relative aspect-[4/3] overflow-hidden rounded-lg shadow-soft ring-1 ring-shadow/10">
+                    <div className="group relative aspect-[4/3] overflow-hidden rounded-xl shadow-soft ring-1 ring-shadow/10">
                       <Image
                         src={exp.image}
                         alt={exp.imageLabel}
@@ -149,20 +132,20 @@ export default function DiningPage() {
                     once={false}
                     duration={1}
                     delay={0.1}
-                    className={`px-2 text-center md:px-8 ${textLeft ? 'md:order-1' : 'md:order-2'}`}
+                    className={`px-1 text-center md:px-8 ${textLeft ? 'md:order-1' : 'md:order-2'}`}
                   >
-                    <p className="font-script text-[1.75rem] leading-none text-shoreline md:text-3xl">
+                    <p className="font-script text-2xl leading-none text-shoreline md:text-3xl">
                       {exp.kicker}
                     </p>
-                    <h3 className="mt-3 font-serif text-[2rem] leading-tight text-shadow md:text-[2.5rem]">
+                    <h3 className="mt-2 font-serif text-2xl leading-tight text-shadow md:text-[2.5rem]">
                       {exp.title}
                     </h3>
-                    <p className="mx-auto mt-5 max-w-md text-[15px] leading-[1.85] text-shadow/70">
+                    <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-shadow/70 md:text-[15px] md:leading-[1.85]">
                       {exp.desc}
                     </p>
                     <a
                       href={telHref}
-                      className="focus-brand mt-8 inline-flex items-center gap-2 border border-shadow/70 px-9 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-shadow transition-colors duration-300 hover:bg-shadow hover:text-cream"
+                      className="focus-brand mt-6 inline-flex items-center gap-2 border border-shadow/70 px-7 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-shadow transition-colors duration-300 hover:bg-shadow hover:text-cream md:mt-8 md:px-9 md:py-3.5"
                     >
                       <Phone className="h-3.5 w-3.5" />
                       Call to Reserve
@@ -176,15 +159,15 @@ export default function DiningPage() {
       </section>
 
       {/* ── Full menu ────────────────────────────────────────────────────── */}
-      <section className="mt-24 border-t border-shadow/10 bg-cream md:mt-32">
-        <div className="mx-auto max-w-content px-4 pb-6 pt-16 text-center md:px-8 md:pt-20">
+      <section className="mt-16 border-t border-shadow/10 bg-cream md:mt-24">
+        <div className="mx-auto max-w-content px-4 pb-4 pt-12 text-center md:px-8 md:pt-16">
           <Reveal as="span" from="up" once={false} className="eyebrow justify-center">
             À La Carte
           </Reveal>
           <Reveal as="h2" from="up" blur delay={0.06} once={false} className="mt-3 font-serif text-3xl text-shadow md:text-4xl">
             Our Full Menu
           </Reveal>
-          <Reveal as="p" from="up" delay={0.12} once={false} className="mx-auto mt-4 max-w-xl leading-relaxed text-shadow/65">
+          <Reveal as="p" from="up" delay={0.12} once={false} className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-shadow/65 md:text-base">
             Browse our complete menu — Indian, Chinese, Tandoor, fresh seafood, breads, rice and more.
           </Reveal>
         </div>
@@ -192,11 +175,11 @@ export default function DiningPage() {
         <DiningMenu />
 
         {/* Bottom CTA */}
-        <div className="border-t border-shadow/10 bg-sand/30 py-12 text-center">
-          <p className="font-serif text-xl text-shadow md:text-2xl">
+        <div className="border-t border-shadow/10 bg-sand/30 px-4 py-10 text-center md:py-14">
+          <p className="font-serif text-lg text-shadow md:text-2xl">
             Ready to dine? Call ahead and we&apos;ll have your table ready.
           </p>
-          <div className="mt-6">
+          <div className="mt-5">
             <Button href={telHref} variant="shadow" size="lg">
               <Phone className="h-4 w-4" />
               {contactDetails.phone}

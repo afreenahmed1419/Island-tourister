@@ -421,7 +421,7 @@ export const menuTabs: MenuTab[] = [
   // ── 9. Salads & Sides ─────────────────────────────────────────────────────
   {
     id: 'salads',
-    label: 'Salads',
+    label: 'Accompaniments',
     sections: [
       {
         heading: 'Salads & Accompaniments',

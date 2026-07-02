@@ -3,8 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Phone } from 'lucide-react'
 import { Reveal } from './motion/Reveal'
-import Button from './Button'
-import { diningExperiences, telHref } from '@/lib/data'
+import { telHref } from '@/lib/data'
 
 // A handful of crowd-pleaser dishes shown as a teaser
 const menuHighlights = [
@@ -12,6 +11,25 @@ const menuHighlights = [
   { category: 'Main Course', items: ['Butter Chicken', 'Kadai Paneer', 'Prawn Curry', 'Mutton Rogan Josh'] },
   { category: 'Chinese', items: ['Chilli Chicken', 'Gobi Manchurian', 'Prawn Manchurian', 'Chilli Fish'] },
   { category: 'Biryani & Rice', items: ['Chicken Biryani', 'Prawn Biryani', 'Veg Biryani', 'Mutton Biryani'] },
+]
+
+const specialExperiences = [
+  {
+    label: 'Candlelight Dinner',
+    kicker: 'An evening for two',
+    tagline: 'Intimate terrace dining under the Andaman stars.',
+    timing: '7:00 PM – 10:30 PM',
+    note: 'By reservation',
+    image: '/dining/candlelight-dinner.jpg',
+  },
+  {
+    label: 'Family Buffet Night',
+    kicker: 'For the whole family',
+    tagline: 'A lavish multi-cuisine spread — every evening.',
+    timing: '7:30 PM – 10:00 PM',
+    note: 'Daily',
+    image: '/dining/family-buffet.jpeg',
+  },
 ]
 
 export default function DiningTeaser() {
@@ -39,36 +57,47 @@ export default function DiningTeaser() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-content px-4 pb-8 pt-20 md:px-8 md:pt-24">
-        {/* Signature experiences — first one only as a teaser */}
-        <div className="mb-20 md:mb-28">
-          {diningExperiences.slice(0, 1).map((exp) => (
-            <div key={exp.title} className="grid items-center gap-10 md:grid-cols-2 md:gap-16 lg:gap-20">
-              <Reveal as="div" from="right" blur once={false} duration={1} className="md:order-2">
-                <div className="group relative aspect-[4/3] overflow-hidden rounded-lg shadow-soft ring-1 ring-shadow/10">
-                  <Image
-                    src={exp.image}
-                    alt={exp.imageLabel}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-[1.6s] ease-out group-hover:scale-[1.05]"
-                  />
+      <div className="mx-auto max-w-content px-4 pb-8 pt-16 md:px-8 md:pt-20">
+        {/* Special experiences — two minimal cards */}
+        <div className="mb-16 md:mb-24">
+          <Reveal as="div" from="up" blur once={false} className="mb-8 text-center">
+            <span className="eyebrow justify-center">Special Experiences</span>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {specialExperiences.map((exp) => (
+              <Reveal key={exp.label} as="div" from="up" blur once={false}>
+                <div className="group relative overflow-hidden rounded-2xl shadow-soft ring-1 ring-shadow/10">
+                  <div className="relative aspect-[3/2]">
+                    <Image
+                      src={exp.image}
+                      alt={exp.label}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+                    <p className="font-script text-lg leading-none text-sand/80">{exp.kicker}</p>
+                    <h3 className="mt-1 font-serif text-xl text-cream md:text-2xl">{exp.label}</h3>
+                    <p className="mt-1.5 text-xs leading-relaxed text-cream/75">{exp.tagline}</p>
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="text-[10px] font-medium uppercase tracking-widest text-cream/55">
+                        {exp.timing} · {exp.note}
+                      </span>
+                      <a
+                        href={telHref}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-cream backdrop-blur-sm transition-colors duration-200 hover:bg-sage hover:text-white"
+                      >
+                        <Phone className="h-3 w-3" />
+                        Call to Book
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
-              <Reveal as="div" from="left" blur once={false} duration={1} delay={0.1} className="px-2 text-center md:order-1 md:px-8 md:text-left">
-                <p className="font-script text-[1.75rem] leading-none text-shoreline md:text-3xl">{exp.kicker}</p>
-                <h3 className="mt-3 font-serif text-[2rem] leading-tight text-shadow md:text-[2.5rem]">{exp.title}</h3>
-                <p className="mx-auto mt-5 max-w-md text-[15px] leading-[1.85] text-shadow/70 md:mx-0">{exp.desc}</p>
-                <a
-                  href={telHref}
-                  className="focus-brand mt-8 inline-flex items-center gap-2 border border-shadow/70 px-9 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-shadow transition-colors duration-300 hover:bg-shadow hover:text-cream"
-                >
-                  <Phone className="h-3.5 w-3.5" />
-                  Call to Reserve
-                </a>
-              </Reveal>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Menu highlights grid */}

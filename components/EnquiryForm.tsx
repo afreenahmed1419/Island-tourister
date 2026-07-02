@@ -28,6 +28,7 @@ export default function EnquiryForm() {
   const [values, setValues] = useState<Fields>(empty)
   const [errors, setErrors] = useState<Errors>({})
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   function update<K extends keyof Fields>(key: K, value: string) {
     setValues((v) => ({ ...v, [key]: value }))
@@ -45,13 +46,24 @@ export default function EnquiryForm() {
     return Object.keys(next).length === 0
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!validate()) return
-    // No backend yet — log the enquiry and show success.
-    console.log('Enquiry submitted:', values)
-    setSent(true)
-    setValues(empty)
+    setLoading(true)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      })
+      if (!res.ok) throw new Error()
+      setSent(true)
+      setValues(empty)
+    } catch {
+      setErrors({ message: 'Something went wrong. Please try again or call us directly.' })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -92,8 +104,8 @@ export default function EnquiryForm() {
       </Field>
 
       <div className="flex flex-wrap items-center gap-4 pt-2">
-        <Button type="submit" size="lg">
-          Send Message
+        <Button type="submit" size="lg" disabled={loading}>
+          {loading ? 'Sending…' : 'Send Message'}
         </Button>
       </div>
 
@@ -109,7 +121,7 @@ export default function EnquiryForm() {
           >
             <Check className="h-5 w-5" />
             <span className="text-sm font-medium">
-              Thank you! Your message has been received. (Demo: logged to console.)
+              Thank you! Your message has been received. We&apos;ll get back to you soon.
             </span>
           </motion.div>
         )}

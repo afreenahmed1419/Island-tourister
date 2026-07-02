@@ -25,6 +25,7 @@ type ButtonProps = CommonProps & {
   href?: never
   onClick?: () => void
   type?: 'button' | 'submit'
+  disabled?: boolean
 }
 
 type Props = LinkProps | ButtonProps
@@ -82,6 +83,7 @@ export default function Button(props: Props) {
       transition={spring}
       type={props.type ?? 'button'}
       onClick={props.onClick}
+      disabled={props.disabled}
       className={cls}
     >
       {children}

@@ -78,7 +78,7 @@ export default function DiningTeaser() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-                    <p className="font-script text-lg leading-none text-sand/80">{exp.kicker}</p>
+                    <p className="font-script text-lg leading-none text-cream [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]">{exp.kicker}</p>
                     <h3 className="mt-1 font-serif text-xl text-cream md:text-2xl">{exp.label}</h3>
                     <p className="mt-1.5 text-xs leading-relaxed text-cream/75">{exp.tagline}</p>
                     <div className="mt-3 flex items-center justify-between">
